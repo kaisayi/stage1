@@ -1,10 +1,22 @@
-#include <tool.h>
+#include "tool.h"
 
 class ListSolution {
 public:
-    toollib::ListNode* RemoveNthFromEnd(toollib::ListNode* head, int n) {
+    void RemoveNthFromEnd(toollib::ListNode*& head, int n) {
         toollib::ListNode* cur = head;
-        return nullptr;
+        while (cur) {
+            n--;
+            cur = cur->next;
+        }
+        if (n == 0) {
+            head = head->next;
+        }
+        if (n >= 0) return;
+        cur = head;
+        while (++n < 0) {
+            cur = cur->next;
+        }
+        cur->next = cur->next->next;
     }
 
 };

@@ -5,9 +5,9 @@
 namespace toollib {
 
 struct ListNode {
-  typedef std::unique_ptr<ListNode> ListNodePtr;
+//   typedef std::unique_ptr<ListNode> ListNodePtr;
   int val;
-  ListNodePtr next;
+  ListNode* next;
   ListNode() : val(0), next(nullptr) {}
   ListNode(int x) : val(x), next(nullptr) {}
   ListNode(int x, ListNode *next) : val(x), next(next) {}
@@ -42,7 +42,7 @@ void InsertListHead(ListNode *&head, int x) {
   if (head == nullptr) {
     head = p;
   } else {
-    p->next.reset(head);
+    p->next = head;
     head = p;
   }
 }
@@ -54,7 +54,7 @@ void PrintList(ListNode *head) {
   }
   while (head) {
     printf("%d->", head->val);
-    head = head->next.get();
+    head = head->next;
   }
   putchar('\n');
 }
@@ -62,7 +62,7 @@ void PrintList(ListNode *head) {
 ListNode *CreateList(int a[], int n) {
   ListNode *head = nullptr;
   if (n > 0) std::reverse(a, a + n);
-  for (size_t i = 0; i < n; i++) {
+  for (int i = 0; i < n; i++) {
     InsertListHead(head, a[i]);
   }
   return head;
