@@ -42,3 +42,10 @@ cc_binary(
     srcs = ["main_array.cc"],
     deps = ["//src/lib:SolutionLib"],
 )
+
+
+cc_binary(
+    name = "main_rapidjson",
+    srcs = ["main_rapidjson.cc"],
+    deps = ["@com_github_tencent_rapidjson//:rapidjson"],
+)

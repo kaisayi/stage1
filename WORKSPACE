@@ -1,3 +1,5 @@
+workspace(name="bazel_stage1")
+
 load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
@@ -35,3 +37,11 @@ http_archive(
 load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
 
 protobuf_deps()
+
+## https://github.com/Tencent/rapidjson/
+http_archive(
+  name = "com_github_tencent_rapidjson",
+  strip_prefix = "rapidjson-1.1.0",
+  url = "https://github.com/Tencent/rapidjson/archive/v1.1.0.tar.gz",
+  build_file = "rapidjson.BUILD",
+)
